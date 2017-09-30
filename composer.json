@@ -1,11 +1,11 @@
 {
-    "name": "symfony/framework-standard-edition",
+    "name": "jarvis-gateway",
     "license": "MIT",
     "type": "project",
-    "description": "The \"Symfony Standard Edition\" distribution",
+    "description": "Gateway betwwen Jarvis and Domoticz",
     "autoload": {
         "psr-4": {
-            "AppBundle\\": "src/AppBundle"
+            "Jarvis\\": "src/Jarvis/"
         },
         "classmap": [ "app/AppKernel.php", "app/AppCache.php" ]
     },
@@ -14,10 +14,18 @@
         "files": [ "vendor/symfony/symfony/src/Symfony/Component/VarDumper/Resources/functions/dump.php" ]
     },
     "require": {
-        "php": ">=5.5.9",
+        "php": ">=7.1",
         "doctrine/doctrine-bundle": "^1.6",
+        "doctrine/doctrine-cache-bundle": "^1.2",
+        "doctrine/doctrine-fixtures-bundle": "^2.3",
         "doctrine/orm": "^2.5",
+        "friendsofsymfony/rest-bundle": "^2.2",
         "incenteev/composer-parameter-handler": "^2.0",
+        "jms/serializer-bundle": "^2.2",
+        "lexik/jwt-authentication-bundle": "^2.4",
+        "liip/functional-test-bundle": "^1.8",
+        "mashape/unirest-php": "^3.0",
+        "nelmio/cors-bundle": "^1.5",
         "sensio/distribution-bundle": "^5.0.19",
         "sensio/framework-extra-bundle": "^3.0.2",
         "symfony/monolog-bundle": "^3.1.0",
@@ -27,6 +35,7 @@
         "twig/twig": "^1.0||^2.0"
     },
     "require-dev": {
+        "phpunit/phpunit": "~6",
         "sensio/generator-bundle": "^3.0",
         "symfony/phpunit-bridge": "^3.0"
     },
@@ -48,7 +57,7 @@
     },
     "config": {
         "platform": {
-            "php": "5.5.9"
+            "php": "7.1"
         },
         "sort-packages": true
     },

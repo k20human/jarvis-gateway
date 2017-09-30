@@ -1,72 +1,84 @@
-Symfony Standard Edition
+Jarvis gateway
 ========================
 
-Welcome to the Symfony Standard Edition - a fully-functional Symfony
-application that you can use as the skeleton for your new applications.
+[![Build Status](https://travis-ci.org/k20human/jarvis-gateway.svg)](https://travis-ci.org/k20human/jarvis-gateway)
 
-For details on how to download and get started with Symfony, see the
-[Installation][1] chapter of the Symfony Documentation.
+Current version: **0.1.0**
 
-What's inside?
---------------
+## Description ##
 
-The Symfony Standard Edition is configured with the following defaults:
+This project is a (mandatory) gateway between [Jarvis](<https://github.com/k20human/jarvis>) and [Domoticz](<https://domoticz.com/>)
 
-  * An AppBundle you can use to start coding;
+## Requirements
 
-  * Twig as the only configured template engine;
+ - PHP >= 7.1
+ - MySQL >= 5.6
+ - Composer
+ - [Domoticz](<https://domoticz.com/>)
 
-  * Doctrine ORM/DBAL;
+## Installation
 
-  * Swiftmailer;
+Download projet from Github.
 
-  * Annotations enabled for everything.
+Run this command:
 
-It comes pre-configured with the following bundles:
+    make install
 
-  * **FrameworkBundle** - The core Symfony framework bundle
+That's it !
 
-  * [**SensioFrameworkExtraBundle**][6] - Adds several enhancements, including
-    template and routing annotation capability
+## Development
 
-  * [**DoctrineBundle**][7] - Adds support for the Doctrine ORM
+This project uses make as runner for common tasks
 
-  * [**TwigBundle**][8] - Adds support for the Twig templating engine
+### Updates develop branch
 
-  * [**SecurityBundle**][9] - Adds security by integrating Symfony's security
-    component
+You can update the develop branch to start a new feature or fix branch, using the `update` recipe :
 
-  * [**SwiftmailerBundle**][10] - Adds support for Swiftmailer, a library for
-    sending emails
+    make update
 
-  * [**MonologBundle**][11] - Adds support for Monolog, a logging library
+This task keeps your current changes, updates the develop branch and the database structure.
 
-  * **WebProfilerBundle** (in dev/test env) - Adds profiling functionality and
-    the web debug toolbar
+Many other recipes are availables, have a look at the `Makefile` for more information.
 
-  * **SensioDistributionBundle** (in dev/test env) - Adds functionality for
-    configuring and working with Symfony distributions
+## Tests
 
-  * [**SensioGeneratorBundle**][13] (in dev env) - Adds code generation
-    capabilities
+Use the `tests` to execute all the project tests has they will be executed during merge requests :
 
-  * [**WebServerBundle**][14] (in dev env) - Adds commands for running applications
-    using the PHP built-in web server
+    make tests
 
-  * **DebugBundle** (in dev/test env) - Adds Debug and VarDumper component
-    integration
+2 recipes are also availables for executing unit or functional tests :
 
-All libraries and bundles included in the Symfony Standard Edition are
-released under the MIT or BSD license.
+executes functional tests only using [LiipFunctionalTestBundle](https://github.com/liip/LiipFunctionalTestBundle#basic-usage) :
 
-Enjoy!
+    make functional-tests
 
-[1]:  https://symfony.com/doc/3.3/setup.html
-[6]:  https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/index.html
-[7]:  https://symfony.com/doc/3.3/doctrine.html
-[8]:  https://symfony.com/doc/3.3/templating.html
-[9]:  https://symfony.com/doc/3.3/security.html
-[10]: https://symfony.com/doc/3.3/email.html
-[11]: https://symfony.com/doc/3.3/logging.html
-[13]: https://symfony.com/doc/current/bundles/SensioGeneratorBundle/index.html
-[14]: https://symfony.com/doc/current/setup/built_in_web_server.html
+executes unit tests only using phpunit :
+
+    make unit-tests
+    
+## Connection
+
+In order to connect you must first get a token. Launch this HTTP (POST) request:
+
+	/login_check
+	
+With this JSON payload :
+
+	{
+		"_username":"test",
+		"_password":"test"
+	}
+	
+ - username: `username` from `user` table
+ - password: your password (if it's the first user created by the fixture: `parameter jarvis_admin_name`-@dm1n)
+ 
+ Get `token` and add to your HTTP request a new `Authorization` header with `Bearer` in prefix
+  
+## Credits
+
+* [k20human](<https://github.com/k20human>)
+
+## License
+
+This bundle is under the MIT license.  
+For the whole copyright, see the [LICENSE](LICENSE) file distributed with this source code.
