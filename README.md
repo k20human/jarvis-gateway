@@ -48,13 +48,19 @@ Use the `tests` to execute all the project tests has they will be executed durin
 
 2 recipes are also availables for executing unit or functional tests :
 
-executes functional tests only using [LiipFunctionalTestBundle](https://github.com/liip/LiipFunctionalTestBundle#basic-usage) :
+Executes functional tests only using [LiipFunctionalTestBundle](https://github.com/liip/LiipFunctionalTestBundle#basic-usage) :
 
     make functional-tests
 
-executes unit tests only using phpunit :
+Executes unit tests only using phpunit :
 
     make unit-tests
+
+## Commands
+ 
+### Create user
+
+	make create-user
     
 ## Connection
 

@@ -39,6 +39,13 @@ ssh-keys: ## Generate SSH keys
 
 .PHONY: install update ssh-keys
 
+### Commands
+
+create-user: ## Create user in database
+	$(CONSOLE) app:create-user
+
+.PHONY: create-user
+
 ### Sources
 
 git-update: ## Update sources
