@@ -115,3 +115,9 @@ lexik_jwt_authentication:
     pass_phrase: '%jwt_key_pass_phrase%'
     token_ttl: '%jwt_token_ttl%'
     user_identity_field: '%jwt_identity_field%'
+
+# Domoticz
+m12_u_sdk_domoticz:
+    username: '%domoticz_username%'
+    password: '%domoticz_password%'
+    base_uri: '%domoticz_url%'

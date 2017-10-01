@@ -1,3 +1,7 @@
 app:
     resource: "@JarvisApiBundle/Controller/DefaultController.php"
     type: annotation
+
+device:
+    type: rest
+    resource: "@JarvisApiBundle/Controller/DeviceController.php"

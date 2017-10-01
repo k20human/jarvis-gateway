@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<serializer>
+    <class name="Jarvis\DomainBundle\Dto\DeviceDto" exclusion-policy="NONE" access-type="public_method">
+        <xml-namespace prefix="atom" uri="http://www.w3.org/2005/Atom"/>
+        <xml-discriminator attribute="true" cdata="false"/>
+    </class>
+</serializer>

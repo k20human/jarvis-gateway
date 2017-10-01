@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <serializer>
-    <class name="I360\DomainBundle\Entity\Access\User" exclusion-policy="ALL" access-type="public_method">
+    <class name="Jarvis\DomainBundle\Entity\Access\User" exclusion-policy="ALL" access-type="public_method">
         <xml-namespace prefix="atom" uri="http://www.w3.org/2005/Atom"/>
         <xml-discriminator attribute="true" cdata="false"/>
         <property name="id" expose="true" type="integer" />

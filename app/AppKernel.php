@@ -26,6 +26,7 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Nelmio\CorsBundle\NelmioCorsBundle(),
             new Lexik\Bundle\JWTAuthenticationBundle\LexikJWTAuthenticationBundle(),
+            new M12U\Bundle\Sdk\DomoticzBundle\M12USdkDomoticzBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
