@@ -5,3 +5,8 @@ app:
 device:
     type: rest
     resource: "@JarvisApiBundle/Controller/DeviceController.php"
+
+user:
+    type: rest
+    resource: "@JarvisApiBundle/Controller/UserController.php"
+
