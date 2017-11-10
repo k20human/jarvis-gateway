@@ -1,0 +1,4 @@
+Jarvis\DomainBundle\Entity\Device\Group:
+    properties:
+        name:
+            - NotBlank: ~

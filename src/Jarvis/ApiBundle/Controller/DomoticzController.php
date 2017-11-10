@@ -14,10 +14,10 @@ use Symfony\Component\HttpFoundation\Request;
 use FOS\RestBundle\Controller\Annotations as Rest;
 
 /**
- * Class DeviceController
+ * Class DomoticzController
  * @package Jarvis\ApiBundle\Controller
  */
-class DeviceController extends FOSRestController implements ClassResourceInterface
+class DomoticzController extends FOSRestController implements ClassResourceInterface
 {
     /** @var  Command */
     private $command;
@@ -45,7 +45,7 @@ class DeviceController extends FOSRestController implements ClassResourceInterfa
      * Default sort is by id DESC
      *
      * @Rest\View()
-     * @Rest\Get()
+     * @Rest\Get("/devices")
      * @Rest\QueryParam(name="offset", requirements="\d+", strict=true, default="0", description="Offset query (start at 0)")
      * @Rest\QueryParam(name="limit", requirements="\d+", strict=true, nullable=true, description="Item count limit")
      * @Rest\QueryParam(name="sort", default="-id", description="Sort direction. Example sort=id,title or sort=-id,name")
@@ -64,7 +64,7 @@ class DeviceController extends FOSRestController implements ClassResourceInterfa
      * Get a Contact by its id
      *
      * @Rest\View()
-     * @Rest\Get()
+     * @Rest\Get("/devices/{idx}")
      *
      * @param Request $request
      * @param string $idx

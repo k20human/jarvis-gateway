@@ -11,5 +11,9 @@
         <field name="username" type="string" column="username" unique="true" />
         <field name="email" type="string" column="email" unique="true" nullable="true" />
         <field name="password" type="string" column="password" />
+
+        <one-to-many field="groups" mapped-by="user" target-entity="Jarvis\DomainBundle\Entity\Device\Group">
+            <cascade><cascade-all /></cascade>
+        </one-to-many>
     </entity>
 </doctrine-mapping>

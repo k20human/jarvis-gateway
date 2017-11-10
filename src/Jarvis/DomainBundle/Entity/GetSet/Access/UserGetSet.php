@@ -1,6 +1,7 @@
 <?php
 
 namespace Jarvis\DomainBundle\Entity\GetSet\Access;
+use Jarvis\DomainBundle\Entity\Device\Group;
 
 /**
  * Trait UserGetSet
@@ -77,5 +78,79 @@ trait UserGetSet
     public function getPassword()
     {
         return $this->password;
+    }
+
+    /**
+     * Get Devices
+     * @return ArrayCollection
+     */
+    public function getDevices()
+    {
+        return $this->devices;
+    }
+
+    /**
+     * Set Devices
+     * @param ArrayCollection $devices
+     * @return $this
+     */
+    public function setDevices($devices)
+    {
+        $this->devices = $devices;
+        return $this;
+    }
+
+    /**
+     * Adds a group
+     *
+     * @param Group $group
+     *
+     * @return $this
+     */
+    public function addGroup(Group $group)
+    {
+        if (!$this->groups->contains($group)) {
+            $this->groups->add($group);
+            $group->setUser($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Removes a group
+     *
+     * @param Group $group
+     *
+     * @return $this
+     */
+    public function removeGroup(Group $group)
+    {
+        if ($this->groups->contains($group)) {
+            $this->groups->removeElement($group);
+            $group->setUser(null);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Get Groups
+     * @return ArrayCollection
+     */
+    public function getGroups()
+    {
+        return $this->groups;
+    }
+
+    /**
+     * Set Groups
+     * @param ArrayCollection $groups
+     * @return $this
+     */
+    public function setGroups($groups)
+    {
+        $this->groups = $groups;
+        return $this;
     }
 }

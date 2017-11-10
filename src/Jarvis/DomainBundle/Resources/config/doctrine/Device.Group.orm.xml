@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping
+        xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity table="groups" name="Jarvis\DomainBundle\Entity\Device\Group" repository-class="Jarvis\DomainBundle\Repository\Device\GroupRepository">
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+
+        <field name="name" type="string" column="name" />
+        <field name="default" type="boolean" column="defaultGroup" />
+        <field name="devices" type="array" column="devices" />
+
+        <many-to-one field="user" target-entity="Jarvis\DomainBundle\Entity\Access\User" inversed-by="groups">
+            <join-column name="id_user" referenced-column-name="id" on-delete="CASCADE" />
+        </many-to-one>
+    </entity>
+</doctrine-mapping>
