@@ -39,17 +39,13 @@ class DeviceController extends FOSRestController implements ClassResourceInterfa
     }
 
     /**
-     * Get collection of Contacts
+     * Get collection of devices
      *
      * You can add query parameters (offset, limit and sort).
      * Default sort is by id DESC
      *
      * @Rest\View()
      * @Rest\Get()
-     * @Rest\QueryParam(name="offset", requirements="\d+", strict=true, default="0", description="Offset query (start at 0)")
-     * @Rest\QueryParam(name="limit", requirements="\d+", strict=true, nullable=true, description="Item count limit")
-     * @Rest\QueryParam(name="sort", default="-id", description="Sort direction. Example sort=id,title or sort=-id,name")
-     * @Rest\QueryParam(name="filter", description="Filter results")
      *
      * @param Request $request
      * @param ParamFetcher $paramFetcher
@@ -61,7 +57,7 @@ class DeviceController extends FOSRestController implements ClassResourceInterfa
     }
 
     /**
-     * Get a Contact by its id
+     * Get a device by its idx
      *
      * @Rest\View()
      * @Rest\Get()

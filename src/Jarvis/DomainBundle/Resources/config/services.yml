@@ -1,5 +1,9 @@
 parameters:
     jarvis.domain.access.user.class: Jarvis\DomainBundle\Entity\Access\User
+    jarvis.domain.access.client.class: Jarvis\DomainBundle\Entity\Access\Client
+    jarvis.domain.access.token.class: Jarvis\DomainBundle\Entity\Access\Token
+    jarvis.domain.access.refresh_token.class: Jarvis\DomainBundle\Entity\Access\RefreshToken
+    jarvis.domain.access.auth_code.class: Jarvis\DomainBundle\Entity\Access\AuthCode
 
 services:
     # default configuration for services in *this* file

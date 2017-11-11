@@ -2,7 +2,6 @@ COMPOSER=composer
 CONSOLE=php bin/console
 GIT=git
 PHPUNIT=php vendor/phpunit/phpunit/phpunit
-OPENSSL=openssl
 
 ### Development
 
@@ -17,13 +16,10 @@ cache: ## Clear cache
 	$(CONSOLE) cache:clear --env=test
 	$(CONSOLE) cache:clear --env=prod
 
-bash: ## Launch bash on workspace laradock container
-	$(LARADOCK) docker-compose exec workspace bash
-
 routes: ## Display routes
 	$(CONSOLE) debug:router
 
-.PHONY: server cache laradock bash routes
+.PHONY: server cache routes
 
 ### Build
 
@@ -32,10 +28,6 @@ install: ## Install dependencies, update databse, update fixtures, clear cache
 
 update: ## Update git sources, renew dependencies, update databse, update fixtures, clear cache
 	git-update composer-renew db-update db-fixtures cache
-
-ssh-keys: ## Generate SSH keys
-	$(OPENSSL) genrsa -out var/jwt/private.pem -aes256 4096
-	$(OPENSSL) rsa -pubout -in var/jwt/private.pem -out var/jwt/public.pem
 
 .PHONY: install update ssh-keys
 
@@ -76,7 +68,7 @@ db-diff: ## Display database schema diff
 	$(CONSOLE) doctrine:schema:update --dump-sql
 
 db-fixtures: ## Update database fixtures
-	$(CONSOLE) doctrine:fixtures:load --fixtures=src/I360/ApplicationFixtures/ --append
+	$(CONSOLE) doctrine:fixtures:load --fixtures=src/Jarvis/ApplicationFixtures/ --append
 
 .PHONY: db-update db-diff db-fixtures
 

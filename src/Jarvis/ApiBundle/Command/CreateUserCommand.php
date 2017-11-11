@@ -18,6 +18,7 @@ class CreateUserCommand extends ContainerAwareCommand
             ->setName('app:create-user')
             ->setDescription('Create user in application')
             ->addArgument('username', InputArgument::REQUIRED, 'Username')
+            ->addArgument('email', InputArgument::REQUIRED, 'Email')
             ->addArgument('password', InputArgument::REQUIRED, 'Password')
         ;
     }
@@ -27,26 +28,36 @@ class CreateUserCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $userManager = $this->getContainer()->get('fos_user.user_manager');
         $em = $this->getContainer()->get('doctrine.orm.entity_manager');
-        $user = new User();
-        $encoder = $this->getContainer()->get('security.encoder_factory')->getEncoder($user);
 
         $username = $input->getArgument('username');
+        $email = $input->getArgument('email');
         $password = $input->getArgument('password');
 
-        $encoded = $encoder->encodePassword($password, '');
+        $user = $userManager->findUserByUsername($username);
 
-        $user
-            ->setUsername($username)
-            ->setPassword($encoded);
+        if ($user === null) {
+            /** @var User $user */
+            $user = $userManager->createUser();
 
-        try {
-            $em->persist($user);
-            $em->flush($user);
+            $user->setUsername($username);
+            $user->setEmail($email);
+            $user->setEnabled(true);
+            $user->addRole('ROLE_USER');
+            $user->setPlainPassword($password);
+            $userManager->updateUser($user);
 
-            $output->writeln(sprintf('Created user <comment>%s</comment>', $username));
-        } catch (\Exception $e) {
-            $output->writeln(sprintf('Can\'t create user <comment>%s</comment>', $username));
+            try {
+                $em->persist($user);
+                $em->flush($user);
+
+                $output->writeln(sprintf('Created user <comment>%s</comment>', $username));
+            } catch (\Exception $e) {
+                $output->writeln(sprintf('Can\'t create user <comment>%s</comment>', $username));
+            }
+        } else {
+            $output->writeln(sprintf('User <comment>%s</comment> already exists', $username));
         }
     }
 
@@ -66,6 +77,17 @@ class CreateUserCommand extends ContainerAwareCommand
                 return $username;
             });
             $questions['username'] = $question;
+        }
+
+        if (!$input->getArgument('email')) {
+            $question = new Question('Please choose an email: ');
+            $question->setValidator(function ($email) {
+                if (empty($email)) {
+                    throw new \Exception('Email can not be empty');
+                }
+                return $email;
+            });
+            $questions['email'] = $question;
         }
 
         if (!$input->getArgument('password')) {
