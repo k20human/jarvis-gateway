@@ -14,17 +14,16 @@ parameters:
     mailer_host: 127.0.0.1
     mailer_user: ~
     mailer_password: ~
+    mailer_send_by: ~
+    mailer_send_by_sender: ~
 
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt
 
     allowed_origin: ['*']
 
-    jwt_private_key_path: '%kernel.root_dir%/../var/jwt/private.pem'
-    jwt_public_key_path: '%kernel.root_dir%/../var/jwt/public.pem'
-    jwt_key_pass_phrase: ''
-    jwt_token_ttl: 604800
-    jwt_identity_field: username
+    jarvis_oauth_application: jarvis-gateway
+    jarvis_oauth_origin: ~
 
     domoticz_username: ~
     domoticz_password: ~

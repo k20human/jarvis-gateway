@@ -7,9 +7,5 @@
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>
         </id>
-
-        <field name="username" type="string" column="username" unique="true" />
-        <field name="email" type="string" column="email" unique="true" nullable="true" />
-        <field name="password" type="string" column="password" />
     </entity>
 </doctrine-mapping>

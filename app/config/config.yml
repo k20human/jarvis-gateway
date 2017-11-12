@@ -62,6 +62,11 @@ doctrine:
                 type:                 xml
                 is_bundle:            true
                 dir:                  Resources/config/doctrine
+            FOSOAuthServerBundle:
+                mapping:              true
+                type:                 xml
+                is_bundle:            true
+                dir:                  Resources/config/doctrine
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -103,18 +108,31 @@ fos_rest:
             - { path: '^/$', priorities: ['text/html', '*/*'], fallback_format: html, prefer_extension: true }
             - { path: '^/doc', priorities: ['text/html', '*/*'], fallback_format: html, prefer_extension: true }
 
+# FOS user
+fos_user:
+    db_driver: orm
+    firewall_name: api
+    user_class: "%jarvis.domain.access.user.class%"
+    from_email:
+        address: "%mailer_send_by%"
+        sender_name: "%mailer_send_by_sender%"
+
+# FOS OAuth
+fos_oauth_server:
+    db_driver:           orm
+    client_class:        "%jarvis.domain.access.client.class%"
+    access_token_class:  "%jarvis.domain.access.token.class%"
+    refresh_token_class: "%jarvis.domain.access.refresh_token.class%"
+    auth_code_class:     "%jarvis.domain.access.auth_code.class%"
+    service:
+        user_provider: fos_user.user_provider.username
+        options:
+            access_token_lifetime: 86400
+
 # JMS serializer
 jms_serializer:
     metadata:
       auto_detection: true
-
-# Lexik JWT
-lexik_jwt_authentication:
-    private_key_path: '%jwt_private_key_path%'
-    public_key_path: '%jwt_public_key_path%'
-    pass_phrase: '%jwt_key_pass_phrase%'
-    token_ttl: '%jwt_token_ttl%'
-    user_identity_field: '%jwt_identity_field%'
 
 # Domoticz
 m12_u_sdk_domoticz:
